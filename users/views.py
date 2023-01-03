@@ -4,7 +4,9 @@ from django.urls import reverse
 from django.views.generic import FormView
 from users.forms import UserRegistrationForm
 
+
 User = get_user_model()
+
 
 class UserRegistrationView(FormView):
     form_class = UserRegistrationForm
