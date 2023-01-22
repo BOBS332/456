@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mac',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -136,3 +136,5 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
     }
 }
+
+AUTH_USER_MODEL = 'users.User'
