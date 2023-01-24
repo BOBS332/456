@@ -1,9 +1,6 @@
 from django.http import HttpResponse
-from django.views import View
-from .tasks import hello, printer
+from django.views.generic import TemplateView
 
-class IndexView(View):
-    def get(self, request):
-        printer.delay(10)
-        hello.delay()
-        return HttpResponse('Hello!')
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
