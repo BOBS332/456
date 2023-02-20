@@ -1,4 +1,4 @@
-"""NewsPaper URL Configuration
+"""mcdonalds URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from users.views import UserRegistrationView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mac.urls')),
-    path('Registration/', UserRegistrationView.as_view(), name="registration"),
+    path('registration/', UserRegistrationView.as_view(), name="registration"),
 ]
