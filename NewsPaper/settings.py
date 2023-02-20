@@ -54,6 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'NewsPaper.urls'
 
+LOCALE_PATH = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -78,9 +82,13 @@ WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '3275339',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
 }
 
 
