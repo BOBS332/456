@@ -20,6 +20,5 @@ from users.views import UserRegistrationView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mac.urls')),
-    path('Registration/', UserRegistrationView.as_view(), name="registration"),
+    path('registration/', UserRegistrationView.as_view(), name="registration"),
 ]

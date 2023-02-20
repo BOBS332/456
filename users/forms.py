@@ -16,5 +16,6 @@ class UserRegistrationForm(forms.Form):
     def clean_username(self):
         if User.objects.filter(username=self.data['username']).exists():
             raise ValidationError('Пользоватлеь с таким именем уже существует')
+
     class Meta:
         model = User

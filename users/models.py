@@ -11,3 +11,7 @@ class User(AbstractUser):
     @property
     def full_name(self):
         return ' '.join((self.last_name, self.first_name))
+
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
