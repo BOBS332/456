@@ -17,7 +17,7 @@ class UserRegistrationView(FormView):
         return reverse('products:product-list')
 
     def post(self, request: HttpRequest, *args, **kwargs):
-        form = self.form_class(data=request.POST)
+        form = self.form_class()
 
         if form.is_valid():
             user = User(username=form.cleaned_data['username'])
