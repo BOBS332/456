@@ -3,7 +3,9 @@ from django.http.request import HttpRequest
 
 from django.urls import reverse
 from django.views.generic import FormView
+
 from users.forms import UserRegistrationForm
+from users.services.user_service import UserService
 
 
 User = get_user_model()
@@ -18,10 +20,19 @@ class UserRegistrationView(FormView):
 
     def post(self, request: HttpRequest, *args, **kwargs):
         form = self.form_class(data=request.POST)
+        user_service = UserService()
 
         if form.is_valid():
-            user = User(username=form.cleaned_data['username'])
-            user.set_password(form.cleaned_data['password'])
-            user.save()
+            user, errors = user_service.register_user(
+                email=form.cleaned_data['email'],
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'],
+                confirm_password=form.cleaned_data['confirm_password'],
+            )
+
+            if len(errors) > 0:
+                form.add_errors(errors)
+                return self.form_invalid(form)
+
             return self.form_valid(form)
         return self.form_invalid(form)
