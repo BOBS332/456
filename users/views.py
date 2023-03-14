@@ -16,7 +16,7 @@ class UserRegistrationView(FormView):
     template_name = 'registration.html'
 
     def get_success_url(self) -> str:
-        return reverse('products:product-list')
+        return reverse('index')
 
     def post(self, request: HttpRequest, *args, **kwargs):
         form = self.form_class(data=request.POST)
