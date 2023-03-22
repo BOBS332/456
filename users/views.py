@@ -23,7 +23,7 @@ class UserRegistrationView(FormView):
         user_service = UserService()
 
         if form.is_valid():
-            user, errors = user_service.register_user(
+            _, errors = user_service.register_user(
                 email=form.cleaned_data['email'],
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password'],
@@ -36,3 +36,11 @@ class UserRegistrationView(FormView):
 
             return self.form_valid(form)
         return self.form_invalid(form)
+
+
+# TODO: Написать форму для логина
+# написать логику авторизации через сервис
+# если ошибок у пользователя нет авторизуем его
+# если ошибки есть, показываем через .add_errors и return form_invalid(form)
+class UserLoginView(FormView):
+    ...
