@@ -14,6 +14,13 @@ class UserService:
     def check_user_exists(self, **filters) -> bool:
         return self.__model.objects.filter(**filters).exists()
 
+    def __get_active_user(self, **filters) -> User:
+        return self.__model.objects.filter(**filters).first()
+
+    @staticmethod
+    def __check_user_password(user: User, password: str) -> bool:
+        return user.check_password(password)
+
     def create_user(
         self,
         email: str,
@@ -26,6 +33,21 @@ class UserService:
             password=password,
             is_active=False,
         )
+
+    def authenticate_user(
+        self,
+        email: str,
+        password: str,
+    ) -> tuple[Optional[User], dict]:
+        errors = defaultdict(list)
+        user = self.__get_active_user(email=email)
+
+        if user is None:
+            errors['email'].append('Пользователя с таким email не существует.')
+        elif not UserService.__check_user_password(user, password):
+            errors['password'].append('Неверный пароль.')
+
+        return user, errors
 
     def register_user(
         self,
